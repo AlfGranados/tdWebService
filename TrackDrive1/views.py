@@ -22,13 +22,15 @@ def forma_producto(request):
 @api_view(['POST'])
 @parser_classes([JSONParser])
 @csrf_exempt
-def crear_producto(request):
+def create_product(request):
     # aquí puedes acceder a los datos del request en formato JSON
     data = request.data
     # crea una nueva instancia del modelo con los datos recibidos
-    nuevo_producto = Producto(name=data['name'], price=data['price'], description=data['description'])
+    new_product = Producto(name=data['name'],
+                           price=data['price'],
+                           description=data['description'])
     # guarda los datos en la base de datos
-    nuevo_producto.save()
+    new_product.save()
 
     data = {'mensaje': 'Datos recibidos correctamente'}
 
