@@ -36,8 +36,8 @@ def location_list(request):
 @csrf_exempt
 def location(request):
     if request.method == 'POST':
-        point = Location(lat=request.POST.get('latitude'), lon=request.POST.get('longitude'),
-                         speed=request.POST.get('speed'), alt=request.POST.get('altitude'),
+        point = Location(latitude=request.POST.get('latitude'), longitude=request.POST.get('longitude'),
+                         speed=request.POST.get('speed'), altitude=request.POST.get('altitude'),
                          vsat=request.POST.get('vsat'), usat=request.POST.get('usat'),
                          accuracy=request.POST.get('accuracy'), year=request.POST.get('year'),
                          month=request.POST.get('month'), day=request.POST.get('day'),
