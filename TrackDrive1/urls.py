@@ -22,7 +22,7 @@ from .views import location, location_list
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('location/', location, name='points'),
-    path('location-list/', location_list, name='location-list'),
+    path('location_list/', location_list, name='location_list'),
     # path('api/crear_producto/', create_product, name='crear_producto'),
     # path('forma_producto/', forma_producto, name='forma_producto'),
 ]
