@@ -7,8 +7,10 @@ from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
 from django.shortcuts import render
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from .models import Location
-from .serializers import LocationSerializer
 
 class LocationList(generics.ListAPIView):
     queryset = Location.objects.all()
@@ -16,19 +18,29 @@ class LocationList(generics.ListAPIView):
 
 
 @csrf_exempt
-def location(request):
-    if request.method == 'POST':
-        point = Location(latitude=request.POST.get('latitude'), longitude=request.POST.get('longitude'),
-                         speed=request.POST.get('speed'), altitude=request.POST.get('altitude'),
-                         vsat=request.POST.get('vsat'), usat=request.POST.get('usat'),
-                         accuracy=request.POST.get('accuracy'), year=request.POST.get('year'),
-                         month=request.POST.get('month'), day=request.POST.get('day'),
-                         hour=request.POST.get('hour'), minute=request.POST.get('minute'),
-                         second=request.POST.get('second'), uid=request.POST.get('uid')
-                         )
-        point.save()
+class DeviceDataView(APIView):
+    def post(self, request):
+        serializer = LocationSerializer(data=request.data)
+        if serializer.is_valid():
+            # Crear una instancia del modelo Location con los datos serializados
+            location_instance = Location(
+                latitude=serializer.validated_data['latitude'],
+                longitude=serializer.validated_data['longitude'],
+                altitude=serializer.validated_data['altitude'],
+                speed=serializer.validated_data['speed'],
+                vsat=serializer.validated_data['vsat'],
+                usat=serializer.validated_data['usat'],
+                accuracy=serializer.validated_data['accuracy'],
+                year=serializer.validated_data['year'],
+                month=serializer.validated_data['month'],
+                day=serializer.validated_data['day'],
+                hour=serializer.validated_data['hour'],
+                minute=serializer.validated_data['minute'],
+                second=serializer.validated_data['second'],
+                uid=serializer.validated_data['uid']
+            )
+            location_instance.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        return JsonResponse({'message': 'Punto creado con éxito!'})
-    else:
-        return JsonResponse({'message': 'Método no permitido'}, status=405)
 
