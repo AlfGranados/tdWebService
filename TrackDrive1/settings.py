@@ -15,7 +15,7 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATABASE_URL = "postgres://trackdrivedb_user:5YWTQEJtUYPJeVG1IIDRV8kVBJnb9jIv@dpg-cjjhqogcfp5c73bdg4hg-a.oregon-postgres.render.com/trackdrivedb"
+# DATABASE_URL = "postgres://trackdrivedb_user:5YWTQEJtUYPJeVG1IIDRV8kVBJnb9jIv@dpg-cjjhqogcfp5c73bdg4hg-a.oregon-postgres.render.com/trackdrivedb"
 
 
 # Quick-start development settings - unsuitable for production
