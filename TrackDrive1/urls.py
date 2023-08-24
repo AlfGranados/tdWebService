@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-# from .views import ListaProductos, create_product, forma_producto
+from .views import Point, LocationList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api/productos/', ListaProductos.as_view()),
+    path('location/', Point, name='points'),
+    path('api/location_list/', LocationList.as_view()),
     # path('api/crear_producto/', create_product, name='crear_producto'),
     # path('forma_producto/', forma_producto, name='forma_producto'),
 ]

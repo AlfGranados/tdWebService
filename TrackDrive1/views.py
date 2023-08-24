@@ -1,37 +1,24 @@
+import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
-# from .models import Producto
-# from .serializers import ProductoSerializer
-# from .forms import ProductoForm
+from .serializers import LocationSerializer
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
 from django.shortcuts import render
+from TrackDrive1.models import Point
 
 
-# class ListaProductos(generics.ListCreateAPIView):
-#     queryset = Producto.objects.all()
-#     serializer_class = ProductoSerializer
-#
-#
-# def forma_producto(request):
-#     form = ProductoForm()
-#     return render(request, 'crear_producto.html', {'form': form})
+class LocationList(generics.ListCreateAPIView):
+    queryset = Point.objects.all()
+    serializer_class = LocationSerializer
 
-
-# @api_view(['POST'])
-# @parser_classes([JSONParser])
-# @csrf_exempt
-# def create_product(request):
-#     # aquí puedes acceder a los datos del request en formato JSON
-#     data = request.data
-#     # crea una nueva instancia del modelo con los datos recibidos
-#     new_product = Producto(name=data['name'],
-#                            price=data['price'],
-#                            description=data['description'])
-#     # guarda los datos en la base de datos
-#     new_product.save()
-#
-#     data = {'mensaje': 'Datos recibidos correctamente'}
-#
-#     return JsonResponse(data, content_type='application/json')
+@csrf_exempt
+def location(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        point = Point(**data)
+        point.save()
+        return JsonResponse({'message': 'Punto creado con éxito!'})
+    else:
+        return JsonResponse({'message': 'Método no permitido'}, status=405)
