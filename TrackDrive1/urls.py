@@ -21,10 +21,8 @@ from .views import LocationList, DeviceDataView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/arduino_data/', DeviceDataView.as_view(), name='arduino_data'),
+    path('api/device_data/', DeviceDataView.as_view(), name='device_data'),
     path('api/location_list/', LocationList.as_view(), name='location_list_api'),
-    # path('api/crear_producto/', create_product, name='crear_producto'),
-    # path('forma_producto/', forma_producto, name='forma_producto'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
