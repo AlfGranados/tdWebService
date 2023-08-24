@@ -79,7 +79,7 @@ class Trip(models.Model):
 
 
 
-class Point(models.Model):
+class Location(models.Model):
     # trip = models.ForeignKey(Trip, on_delete=models.CASCADE, default=1)
     latitude = models.DecimalField(max_digits=9, decimal_places=6, default=0)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, default=0)
