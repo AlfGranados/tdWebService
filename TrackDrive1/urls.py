@@ -17,11 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from .views import LocationList, DeviceDataView
+from .views import LocationList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/device_data/', DeviceDataView.as_view(), name='device_data'),
     path('api/location_list/', LocationList.as_view(), name='location_list_api'),
 ]
 
