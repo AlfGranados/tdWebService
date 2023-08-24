@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 # from .views import ListaProductos, create_product, forma_producto
 
 urlpatterns = [
@@ -24,3 +25,5 @@ urlpatterns = [
     # path('api/crear_producto/', create_product, name='crear_producto'),
     # path('forma_producto/', forma_producto, name='forma_producto'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()

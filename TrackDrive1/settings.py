@@ -9,11 +9,13 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+DATABASE_URL = "postgres://trackdrivedb_user:5YWTQEJtUYPJeVG1IIDRV8kVBJnb9jIv@dpg-cjjhqogcfp5c73bdg4hg-a.oregon-postgres.render.com/trackdrivedb"
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +28,7 @@ SECRET_KEY = '9ooy_6b1gx8(qzgfz=rx#3y&@u=9=i@*t(vjuv+-z))776d-8+=ul+o&+z555b#_a-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -83,15 +85,20 @@ WSGI_APPLICATION = 'TrackDrive1.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'trackdrivedb',
+#         "USER": "root",
+#         "PASSWORD": "",
+#         "HOST": "localhost",
+#         "PORT": "3306",
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'trackdrivedb',
-        "USER": "root",
-        "PASSWORD": "",
-        "HOST": "localhost",
-        "PORT": "3306",
-    }
+    # 'default' : dj_database_url.parse(os.environ.get(DATABASE_URL))
+    "default" : dj_database_url.parse(DATABASE_URL)
 }
 
 
