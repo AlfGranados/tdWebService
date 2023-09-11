@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from .views import LocationList
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/location_list/', LocationList.as_view(), name='location_list_api'),
+    path('mi-endpoint/', views.mi_vista, name='mi_vista'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

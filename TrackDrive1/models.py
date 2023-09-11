@@ -1,17 +1,6 @@
 from django.db import models
 
-#
-# class Producto(models.Model):
-#     name = models.CharField(max_length=100)
-#     description = models.TextField()
-#     price = models.DecimalField(max_digits=6, decimal_places=2)
-
-
 class Driver(models.Model):
-    """
-    Model representing a driver.
-    """
-    # Fields
     first_name = models.CharField(max_length=30, help_text='Enter the driver\'s first name')
     last_name = models.CharField(max_length=30, help_text='Enter the driver\'s last name')
     email = models.EmailField(max_length=100, unique=True, help_text='Enter the driver\'s email address')
@@ -78,7 +67,6 @@ class Trip(models.Model):
         return f'Trip {self.trip_id}'
 
 
-
 class Location(models.Model):
     # trip = models.ForeignKey(Trip, on_delete=models.CASCADE, default=1)
     latitude = models.DecimalField(max_digits=9, decimal_places=6, default=0)
@@ -98,17 +86,3 @@ class Location(models.Model):
 
     # def __str__(self):
     #     return f"Point({self.latitude}, {self.longitude}, {self.altitude}) - Trip ID: {self.trip_id}"
-
-
-
-# class Point(models.Model):
-#     # Coordinates of the point
-#     latitude = models.DecimalField(max_digits=9, decimal_places=6)
-#     longitude = models.DecimalField(max_digits=9, decimal_places=6)
-#     altitude = models.DecimalField(max_digits=9, decimal_places=2)
-#
-#     # UTC timestamp when the point was recorded
-#     timestamp = models.DateTimeField()
-#
-#     # Foreign keys to related models
-#     trip = models.ForeignKey(Trip, on_delete=models.CASCADE, default=1)
