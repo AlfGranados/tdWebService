@@ -12,18 +12,20 @@ from .models import Location
 from django.http import HttpResponse
 
 def mi_vista(request):
-    if request.method == 'POST':
-        # Obtener los datos del POST
-        lat = request.POST.get('lat', '0')
-        lon = request.POST.get('lon', '0')
+    if request.method == 'GET':
+        # Obtener los datos de la solicitud GET
+        lat = request.GET.get('lat', '0')
+        lon = request.GET.get('lon', '0')
+        alt = request.GET.get('alt', '0')  # Agregamos alt como un nuevo parámetro
 
-        # Crear una respuesta de texto con la latitud y longitud
-        respuesta = f"Latitud: {lat}, Longitud: {lon}"
+        # Crear una respuesta de texto con la latitud, longitud y altitud
+        respuesta = f"Latitud: {lat}, Longitud: {lon}, Altitud: {alt}"
 
         # Devolver la respuesta como texto
         return HttpResponse(respuesta, content_type='text/plain')
     else:
-        return HttpResponse("Esta vista solo acepta solicitudes POST.", content_type='text/plain')
+        return HttpResponse("Esta vista solo acepta solicitudes GET.", content_type='text/plain')
+
 
 
 class LocationList(generics.ListAPIView):
