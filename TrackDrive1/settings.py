@@ -55,9 +55,18 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "https://trackdrive.onrender.com",
+#CORS_ALLOWED_ORIGINS = [
+ #   "https://trackdrive.onrender.com",
     # Agrega otros orígenes de confianza si es necesario.
+#]
+
+# Importa la configuración de CORS
+from corsheaders.defaults import default_headers
+
+# Configuración de CORS
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'X-Requested-With',  # Agrega otros encabezados personalizados si es necesario
 ]
 
 ROOT_URLCONF = 'TrackDrive1.urls'
