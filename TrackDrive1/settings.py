@@ -69,6 +69,8 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
     'X-Requested-With',  # Agrega otros encabezados personalizados si es necesario
 ]
 
+CSRF_TRUSTED_ORIGINS = ['http://localhost/holamundo/']
+
 ROOT_URLCONF = 'TrackDrive1.urls'
 
 TEMPLATES = [
