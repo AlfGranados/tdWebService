@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'TrackDrive1.wsgi.application'
 
 DATABASES = {
     'default' : dj_database_url.parse(os.environ.get("DATABASE_URL"))
-    #"default" : dj_database_url.parse(DATABASE_URL)
+    #"default" : dj_database_url.parse("postgres://trackdrivedb_user:5YWTQEJtUYPJeVG1IIDRV8kVBJnb9jIv@dpg-cjjhqogcfp5c73bdg4hg-a.oregon-postgres.render.com/trackdrivedb")
 }
 
 
