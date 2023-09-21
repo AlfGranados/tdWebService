@@ -28,9 +28,12 @@ def mi_vista(request):
 
         # Obtener la representación de la solicitud como texto plano
         solicitud_como_texto = str(request)
+        # Obtener los encabezados de la solicitud como texto
+        headers = "\n".join([f"{key}: {value}" for key, value in request.META.items()])
 
         # Crear una respuesta que contenga la solicitud como texto plano
-        respuesta = f"Latitud: {lat}, Longitud: {lon}, Altitud: {alt}\n\nSolicitud recibida:\n{solicitud_como_texto}"
+        respuesta = f"Latitud: {lat}, Longitud: {lon}, Altitud: {alt}\n\nSolicitud recibida:\n" \
+                    f"{solicitud_como_texto}\n\nEncabezados de la solicitud:\n{headers}"
 
         # Devolver la respuesta como texto
         return HttpResponse(respuesta, content_type='text/plain')
